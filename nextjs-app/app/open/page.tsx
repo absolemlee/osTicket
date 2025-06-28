@@ -1,14 +1,21 @@
+'use client';
 import { useState } from 'react';
+import { trpc } from '../trpcClient';
 
 export default function OpenTicket() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const handleSubmit = async (e) => {
+  const createTicket = trpc.createTicket.useMutation();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder: API call to create ticket
-    console.log({ email, name, subject, message });
+    await createTicket.mutateAsync({ email, name, subject, message });
+    setEmail('');
+    setName('');
+    setSubject('');
+    setMessage('');
   };
 
   return (
@@ -27,7 +34,7 @@ export default function OpenTicket() {
         <label>Message
           <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={createTicket.isLoading}>Submit</button>
       </form>
     </main>
   );

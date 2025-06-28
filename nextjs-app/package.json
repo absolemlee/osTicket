@@ -1,6 +1,6 @@
 {
   "name": "osticket-next",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,8 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@trpc/client": "^10.37.0",
+    "@trpc/react-query": "^10.37.0",
+    "@trpc/server": "^10.37.0",
+    "@tanstack/react-query": "^4.29.9",
     "next": "13.4.19",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "typescript": "5.2.2",
+    "@types/react": "18.2.21",
+    "@types/node": "20.8.5"
   }
 }
